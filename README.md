@@ -1,1 +1,1 @@
-A simple implementation of distributed in memory cache in golang. WIP.
+A simple implementation of a distributed in-memory cache in golang. WIP.
