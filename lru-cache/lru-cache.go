@@ -40,7 +40,7 @@ func (c *Cache) Add(key string, value string) {
 	c.cache[key] = c.list.PushFront(&entry{key: key, value: value})
 }
 
-func (c *Cache) Get(key string) string{
+func (c *Cache) Get(key string) string {
 	if val, exists := c.cache[key]; exists {
 		c.list.MoveToFront(val)
 

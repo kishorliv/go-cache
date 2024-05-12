@@ -5,21 +5,23 @@ import (
 )
 
 func TestAdd(t *testing.T) {
-	capacity := 100
-	c := CreateCache(capacity)
 
-	c.Add("key1", "value1")
+	t.Run("add item in the cache", func(t *testing.T) {
+		capacity := 100
+		c := CreateCache(capacity)
 
-	actual := c.cache["key1"].Value.(*entry).value
-	expected := "value1"
+		c.Add("key1", "value1")
 
-	if actual != expected {
-		t.Errorf("actual %s, expected %s", actual, expected)
-	}
+		actual := c.cache["key1"].Value.(*entry).value
+		expected := "value1"
+
+		if actual != expected {
+			t.Errorf("actual %s, expected %s", actual, expected)
+		}
+	})
 }
 
-
-func TestGet(t *testing.T){
+func TestGet(t *testing.T) {
 	t.Run("get an item from the cache when the key is supplied", func(t *testing.T) {
 		capacity := 2
 		c := CreateCache(capacity)
