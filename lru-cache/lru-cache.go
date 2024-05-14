@@ -40,12 +40,12 @@ func (c *LRUCache) Add(key string, value string) {
 	c.cache[key] = c.list.PushFront(&entry{key: key, value: value})
 }
 
-func (c *LRUCache) Get(key string) string {
+func (c *LRUCache) Get(key string) (value string, ok bool) {
 	if val, exists := c.cache[key]; exists {
 		c.list.MoveToFront(val)
 
-		return val.Value.(*entry).value
+		return val.Value.(*entry).value, true
 	}
 
-	return ""
+	return 
 }

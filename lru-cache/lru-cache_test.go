@@ -66,8 +66,12 @@ func TestGet(t *testing.T) {
 		c.Add("key2", "value2")
 		c.Add("key3", "value3")
 
-		actual := c.Get("key2")
+		actual, _ok := c.Get("key2")
 		expected := "value2"
+
+		if !_ok {
+			t.Errorf("unexpected value")
+		}
 
 		if actual != expected {
 			t.Errorf("actual %s, expected %s", actual, expected)
