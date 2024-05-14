@@ -2,7 +2,7 @@ package lrucache
 
 import "container/list"
 
-type Cache struct {
+type LRUCache struct {
 	capacity int
 	list     *list.List
 	cache    map[string]*list.Element
@@ -13,11 +13,11 @@ type entry struct {
 	value string
 }
 
-func CreateCache(capacity int) *Cache {
-	return &Cache{capacity: capacity, list: list.New(), cache: make(map[string]*list.Element)}
+func CreateCache(capacity int) *LRUCache {
+	return &LRUCache{capacity: capacity, list: list.New(), cache: make(map[string]*list.Element)}
 }
 
-func (c *Cache) Add(key string, value string) {
+func (c *LRUCache) Add(key string, value string) {
 	if val, exists := c.cache[key]; exists {
 		c.list.MoveToFront(val)
 		c.cache[key].Value = value
@@ -40,7 +40,7 @@ func (c *Cache) Add(key string, value string) {
 	c.cache[key] = c.list.PushFront(&entry{key: key, value: value})
 }
 
-func (c *Cache) Get(key string) string {
+func (c *LRUCache) Get(key string) string {
 	if val, exists := c.cache[key]; exists {
 		c.list.MoveToFront(val)
 
